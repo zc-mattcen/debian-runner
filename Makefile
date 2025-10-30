@@ -58,10 +58,7 @@ lint.yaml:
 
 .PHONY: lint.schema
 lint.schema:
-	#yq . .github/workflows/ci.yml | \
-	#	jsonschema https://www.schemastore.org/github-workflow.json -o pretty
-	#yq . .github/workflows/build.yml | \
-	#	jsonschema https://www.schemastore.org/github-workflow.json -o pretty
+	@echo Warning: Not linting JSON/YAML schemas
 
 .PHONY: lint.shell
 lint.shell:
