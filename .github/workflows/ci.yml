@@ -1,34 +1,38 @@
----
-name: CI
+# yaml-language-server: $schema=https://www.schemastore.org/github-workflow.json
 
-on:
-  push:
-  pull_request:
-  release:
-    types:
-      - published
-      - created
-      - edited
-  workflow_dispatch:
+---
 
 jobs:
-  smoketest:
-    name: Smoke Test
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+    linttest:
+        name: make lint  # test
+        runs-on: ubuntu-latest
 
-      - name: Fix Checkout
-        run: |
-          git fetch --force --tags
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                fetch-depth: 0
 
-      - name: Install essential
-        run: |
-          sudo apt-get update
-          make build-dep
+            - name: Fix Checkout
+              run: |
+                git fetch --force --tags
 
-      - name: Run tests
-        run: |
-          make lint
+            - name: Install Dependencies
+              run: |
+                sudo apt-get update
+                make build-deps
+            - name: Run tests  # and linters
+              run: |
+                make -k lint  # test
+
+name: CI
+
+# yamllint disable-line rule:truthy
+on:
+    pull_request:
+    push:
+    release:
+      types:
+        - published
+        - created
+        - edited
+    workflow_dispatch:
