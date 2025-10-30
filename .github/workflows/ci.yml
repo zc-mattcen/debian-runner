@@ -3,36 +3,36 @@
 ---
 
 jobs:
-    linttest:
-        name: make lint  # test
-        runs-on: ubuntu-latest
+  linttest:
+    name: make lint  # test
+    runs-on: ubuntu-latest
 
-        steps:
-            - uses: actions/checkout@v4
-              with:
-                fetch-depth: 0
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-            - name: Fix Checkout
-              run: |
-                git fetch --force --tags
+      - name: Fix Checkout
+        run: |
+          git fetch --force --tags
 
-            - name: Install Dependencies
-              run: |
-                sudo apt-get update
-                make build-deps
-            - name: Run tests  # and linters
-              run: |
-                make -k lint  # test
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          make build-deps
+      - name: Run tests  # and linters
+        run: |
+          make -k lint  # test
 
 name: CI
 
 # yamllint disable-line rule:truthy
 on:
-    pull_request:
-    push:
-    release:
-      types:
-        - published
-        - created
-        - edited
-    workflow_dispatch:
+  pull_request:
+  push:
+  release:
+    types:
+      - published
+      - created
+      - edited
+  workflow_dispatch:
