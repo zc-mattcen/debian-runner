@@ -1,6 +1,6 @@
+---
 # yaml-language-server: $schema=https://www.schemastore.org/github-workflow.json
 
----
 env:
   IMAGE_NAME: ${{ github.repository }}
   REGISTRY: ghcr.io
