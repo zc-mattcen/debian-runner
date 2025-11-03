@@ -73,6 +73,9 @@ on:
     - cron: '0 3 * * 3'
   workflow_dispatch:
   workflow_run:
-    branches: [main]
-    types: [completed]
-    workflows: ["CI"]
+    branches:
+      - main
+    types:
+      - completed
+    workflows:
+      - CI
