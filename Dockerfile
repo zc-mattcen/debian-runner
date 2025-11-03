@@ -1,6 +1,6 @@
 FROM docker.io/library/debian:trixie
 
-LABEL org.opencontainers.image.source https://github.com/zc-mattcen/debian-runner
+LABEL org.opencontainers.image.source https://github.com/zerocap-org/debian-runner
 
 ARG USERNAME=debian
 ARG USER_UID=1000
